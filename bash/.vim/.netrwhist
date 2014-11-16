@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/skh/.rvm/gems/ruby-2.1.0@susyplugins'
+let g:netrw_dirhist_2='/Users/skh/.rvm/gems/ruby-2.1.0/gems/breakpoint-2.4.1/stylesheets/breakpoint'
+let g:netrw_dirhist_3='/Users/skh/Dropbox/Private/Sites/e9p/sites/default/themes/e9p/node_modules/grunt-newer/.cache'
+let g:netrw_dirhist_4='/Users/skh/Dropbox/Private/Sites/ekidz/sites/default/modules/bigvideo/bower_components/BigVideo.js'
+let g:netrw_dirhist_5='/Users/skh/VirtualBox VMs'
+let g:netrw_dirhist_6='/Users/skh/Dropbox/Private/Sites/ep/v6/site/sites/default/.git'
+let g:netrw_dirhist_7='/Users/skh/.drush'
