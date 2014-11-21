@@ -1,0 +1,18 @@
+#
+# Base settings.  This apply only to the directory setfacl was called on.  X = x on directory only.
+#
+u::rwX          # All but execute file.
+g::---          # No access.
+o::---          # No access.
+g:web-user:r-X  # Read files.
+g:web-admin:rwX # All but execute file.
+m::rwx          # Mask.
+#
+# Default settings.  Copy of the ones above.
+#
+d:u::rwX
+d:g::---
+d:o::---
+d:g:web-user:r-X
+d:g:web-admin:rwX
+d:m::rwx
