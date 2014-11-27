@@ -60,7 +60,7 @@ facl_files ()
 # Switch argument.
 case "$1" in
 w) selinux_chcon; facl_webroot; facl_files;;
-f) facl_files;;
+f) selinux_chcon; facl_files;;
 *) echo "Usage: drupalfacl [w webroot|f files] [path]"; exit 1;;
 esac
 
