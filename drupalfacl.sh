@@ -33,9 +33,6 @@ facl_webroot ()
 
   # Success.
   echo "Directory \`$target\` initialized."
-
-  # Do the file directories now.
-  init_files
 }
 
 # Sets the files directory acls.
@@ -51,13 +48,15 @@ facl_files ()
     else find "$target" -path "*sites/default/files" -print0 | xargs -0 setfacl -RbM "$acl" "$target"
   fi
   echo "File directory acl's set."
-  exit 0
 }
 
 # Switch argument.
 case "$1" in
-w) facl_webroot;;
+w) facl_webroot
+   facl_files;;
 f) facl_files;;
 *) echo "Usage: drupalfacl [w webroot|f files] [path]"
    exit 1;;
 esac
+
+exit 0;
