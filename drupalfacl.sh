@@ -15,6 +15,16 @@ if [ ! -d "$target" ]; then
   exit 1
 fi
 
+# Set contexts.
+selinux_chcon ()
+{
+  ENFORCE=/selinux/enforce
+  if [ -f "$ENFORCE" ] &&  [ `cat "$ENFORCE"` == 1 ]; then
+    chcon -R system_u:object_r:httpd_sys_content_t:s0 "$target"
+    echo "Contexts set"
+  fi
+}
+
 # Initialize the webroot acl.
 facl_webroot ()
 {
@@ -27,9 +37,6 @@ facl_webroot ()
          setfacl -Rbm u::rwX,g::---,o::---,g:web-user:r-X,g:web-admin:rwX,m::rwx,d:u::rwX,d:g::---,d:o::---,d:g:web-user:r-X,d:g:web-admin:rwX,d:m::rwx "$target"
     else setfacl -RbM "$acl" "$target"
   fi
-
-  # For SELinux.
-  chcon -R system_u:object_r:httpd_sys_content_t:s0 "$target"
 
   # Success.
   echo "Directory \`$target\` initialized."
@@ -52,11 +59,9 @@ facl_files ()
 
 # Switch argument.
 case "$1" in
-w) facl_webroot
-   facl_files;;
+w) selinux_chcon; facl_webroot; facl_files;;
 f) facl_files;;
-*) echo "Usage: drupalfacl [w webroot|f files] [path]"
-   exit 1;;
+*) echo "Usage: drupalfacl [w webroot|f files] [path]"; exit 1;;
 esac
 
 exit 0;
